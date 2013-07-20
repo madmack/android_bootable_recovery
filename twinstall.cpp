@@ -28,10 +28,17 @@ extern "C" {
 	#include "gui/gui.h"
 }
 
+#ifdef ENABLE_LOKI
+#include "compact_loki.h"
+#endif 
+
 static int Run_Update_Binary(const char *path, ZipArchive *Zip, int* wipe_cache) {
 	const ZipEntry* binary_location = mzFindZipEntry(Zip, ASSUMED_UPDATE_BINARY_NAME);
 	string Temp_Binary = "/tmp/updater";
 	int binary_fd, ret_val, pipe_fd[2], status, zip_verify;
+#ifdef ENABLE_LOKI
+        int loki_support_enabled;
+#endif
 	char buffer[1024];
 	const char** args = (const char**)malloc(sizeof(char*) * 5);
 	FILE* child_data;
@@ -126,7 +133,17 @@ static int Run_Update_Binary(const char *path, ZipArchive *Zip, int* wipe_cache)
 		LOGERR("Error executing updater binary in zip '%s'\n", path);
 		return INSTALL_ERROR;
 	}
-
+#ifdef LOKI_ENABLED
+	DataManager::GetValue(TW_LOKI_SUPPORT_ENABLED_VAR, loki_support_enabled);
+            gui_print("loki_support_enabled status: %d",loki_support_enabled);
+        if(loki_support_enabled) {
+            gui_print("Checking if loki-fying is needed");
+            int result;
+            if(result = loki_check()) {
+               return result;
+           }
+       }
+#endif 
 	return INSTALL_SUCCESS;
 }
 

@@ -600,6 +600,14 @@
 			</object>
 
 			<object type="checkbox">
+				<placement x="%col1_x%" y="%row9_text_y%" />
+				<font resource="font" color="white" />
+				<text>Enable Loki Support?</text>
+				<data variable="tw_loki_support_enabled" />
+				<image checked="checkbox_true" unchecked="checkbox_false" />
+			</object>
+
+			<object type="checkbox">
 				<condition var1="tw_has_injecttwrp" var2="1" />
 				<placement x="%col1_x%" y="%row10_text_y%" />
 				<font resource="font" color="%text_color%" />

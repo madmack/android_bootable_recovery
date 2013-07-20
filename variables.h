@@ -87,6 +87,10 @@
 #define TW_TIME_ZONE_VAR            "tw_time_zone"
 #define TW_RM_RF_VAR                "tw_rm_rf"
 
+#ifdef ENABLE_LOKI
+#define TW_LOKI_SUPPORT_ENABLED_VAR    "tw_loki_support_enabled"
+#endif
+
 #define TW_BACKUPS_FOLDER_VAR       "tw_backups_folder"
 
 #define TW_SP1_PARTITION_NAME_VAR   "tw_sp1_name"
