@@ -848,6 +848,10 @@ void DataManager::SetDefaultValues()
 	mConstValues.insert(make_pair(TW_SDEXT_DISABLE_EXT4, "0"));
 #endif
 
+#ifdef ENABLE_LOKI
+        mValues.insert(make_pair(TW_LOKI_SUPPORT_ENABLED_VAR, make_pair("1", 1)));
+#endif 
+
 #ifdef TW_HAS_NO_BOOT_PARTITION
 	mValues.insert(make_pair("tw_backup_list", make_pair("/system;/data;", 1)));
 #else
