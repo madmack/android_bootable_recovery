@@ -21,7 +21,7 @@
 
 #define VERSION "1.6"
 
-#define printme gprintme
+#define printme gui_print
 
 #define BOOT_MAGIC_SIZE 8
 #define BOOT_NAME_SIZE 16
